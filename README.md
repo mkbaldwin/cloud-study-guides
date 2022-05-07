@@ -4,5 +4,5 @@ Notes while studying for the "AWS Certified Cloud Practitioner" exam.
 
 ## Sections
 
-  1. [Cloud Concepts](2-Cloud_Concepts.md)
+  1. [Cloud Concepts](1-Cloud_Concepts.md)
   2. AWS Services
