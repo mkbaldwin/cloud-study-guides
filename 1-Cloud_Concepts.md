@@ -68,6 +68,3 @@ AWS offers different paid support plans based on communication methods, response
 | Production System Down Response time     |           |                       | 1 hour            | 1 hour              |
 | Business System Down Response Time       |           |                       |                   | 15 minute           |
 
-
-
- * **** - 
