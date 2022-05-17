@@ -7,4 +7,6 @@ The notes are divided into several sections below.
 ## Sections
 
   1. [Cloud Concepts](1-Cloud_Concepts.md)
-  2. AWS Services
+  2. [Compute Services](2-Compute_Services.md)
+  3. [File Storage Services](3-File_Storage_Services.md)
+  4. [Database Services](4-Database_Services.md)
