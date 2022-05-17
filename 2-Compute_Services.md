@@ -19,11 +19,11 @@ EC2 instances are created based on Amazon Machine Images (AMI). An AMI provides 
 
 ### Purchase Options
 
-    * **On-demand** - Standard purchase method for EC2 instances. Billed per second while the instance is in the `running` state. No time based commitment required.
-    * **Reserved** - Reserved instances provide significant cost savings over on-demand instances, but they require a commitment to run the instance for a specific amount of time. This is not a dedicated server.
-    * **Savings Plan** - Similar to a reserved instance, but you are making a commitment measured in USD per hour.
-    * **Spot** - Significant cost savings for use cases that are flexible about when they are run and if they can be interrupted. 
-    * **Dedicated** - Most expensive. Good if you have a per server licensing model to adhere to. Some types of compliance models need this.
+  * **On-demand** - Standard purchase method for EC2 instances. Billed per second while the instance is in the `running` state. No time based commitment required.
+  * **Reserved** - Reserved instances provide significant cost savings over on-demand instances, but they require a commitment to run the instance for a specific amount of time. This is not a dedicated server.
+  * **Savings Plan** - Similar to a reserved instance, but you are making a commitment measured in USD per hour.
+  * **Spot** - Significant cost savings for use cases that are flexible about when they are run and if they can be interrupted. 
+  * **Dedicated** - Most expensive. Good if you have a per server licensing model to adhere to. Some types of compliance models need this.
 
 ## Elastic Beanstalk
 
@@ -36,3 +36,13 @@ Elastic beanstalk allows for deplyoing applications with minimal knowledge of ot
 AWS Lambda is a serverless computing service that allows for application code to run without provisioning any server infrastructure. Commonly referred to as functions as a service. Only pay for what you use based on execution time and memory. Integrates well with event driven architectures and other AWS services. Benefits include: low maintenance, auto scaling, fauly tolerence, serveless architecture, and pay by usage.
 
 
+## Elastic Load Balancing
+
+AWS elastic load balancing is a highly available and scalable service for managing traffic into an application. The service runs always in at least two availability zones and autoscales based on load.
+
+There are four types of load balancers:
+
+ * **Application Load Balancer** - An application load balancer works at the application layer (OSI layer 7) and can load balance/proxy HTTP/HTTPS traffic. Allows for specifying advanced routing rules.
+ * **Network Load Balancer** - A network load balancer works at the transport layer (OSI layer 4) and is capable of load balancing most TCP/UDP protocols.
+ * **Gateway Load Balancer** - Provides cloud native load balancing for virtual appliances. 
+ * **Classic Load Balancer** - Older style of load balancer that supports TCP/SSL connections and EC2-classic. Supports sticky sessions using application-generated cookies.

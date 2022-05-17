@@ -1,6 +1,8 @@
 # Cloud Concepts
 
-Cloud computing is a term used to describe on-demand access to computing services. Currently, AWS is the largest cloud computing provider. According to Amazon there are six advantages to cloud computing:
+Cloud computing is a term used to describe on-demand access to computing services. Currently, AWS is the largest cloud computing provider. 
+
+### Six Advantages of Cloud Computing
 
   1. **Trade fixed expense for variable expense** - Pay as you go pricing in the cloud allows you to pay only for the resources you use and eliminates the need for large up-front infrastructure investments.
   2. **Benefit from economies of scale** - You can achieve a lower cost with cloud resources than you could do on your own. Because AWS is managing resources for thousands of users you benefit from economies of scale.
@@ -15,7 +17,7 @@ Some of the advantages to cloud computing include:
   * **Reliability** - A solution's ability to provude its intended functionality when needed. 
   * **Agility** - Lowers cost of trying new things; less time maintaining infrastructure; access to emerging technologies; reduced risk around security and compliance.
 
-## Cloud Computing Models
+### Cloud Computing Models
 
   * **Infrastructure as a Service (IaaS)** - This model gives the greatest amount of flexibility and control. IaaS services are very similar to working with your own physical infrastructure, but you are working with virtualized infrastcture components without access to the underlying hardware. 
   * **Platform as a Service (PaaS)** - This model is designed to remove the burden of managing infrastructure resources such as compute, storage, etc. This service offers a platform onto which you deploy your software applications. 
