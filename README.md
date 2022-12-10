@@ -1,12 +1,9 @@
 # AWS Certified Cloud Practitioner (CLF-C01) Exam Notes
 
-This repository is a collection of notes collected into a very basic study guide for the AWS Certified Cloud Practicioner exam. The documents here are not a comprehensive guide, but instead are a study aid to for myself to review and also learn through the process of gathering this information and documenting here. 
+This repository contains notes from various training materials into a based study guide for the AWS Certified Cloud 
+Practitioner exam. This document is not a comprehensive guide, but is simply a reference compiled for personal use.
 
-The notes are divided into several sections below.
+The [study guide](AWS_CCP_Study_Guide.md) is written as a Markdown document with some additional pandoc 
+metadata/formatting. The `makepdf.sh` script will use pandoc/latex to generate a PDF version of the document.
 
-## Sections
-
-  1. [Cloud Concepts](1-Cloud_Concepts.md)
-  2. [Compute Services](2-Compute_Services.md)
-  3. [File Storage Services](3-File_Storage_Services.md)
-  4. [Database Services](4-Database_Services.md)
+**Use this document at your own risk as it may be incomplete or have errors.**
