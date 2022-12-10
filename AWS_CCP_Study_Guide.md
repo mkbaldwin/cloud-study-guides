@@ -1,5 +1,6 @@
 ---
-title: "AWS Cloud Practitioner Study Notes"
+title: "AWS Cloud Practitioner Study Guide"
+date: December 2022
 documentclass: report
 geometry: "margin=.75in"
 linestretch: 1.25
@@ -16,7 +17,8 @@ Six Advantages of Cloud Computing
 
    1. **Trade fixed expense for variable expense** - Pay as you go pricing in the cloud allows you to pay only for the 
                                                      resources you use and eliminates the need for large up-front 
-                                                     infrastructure investments.
+                                                     infrastructure investments. Trade capital expense (CAPEX) for
+                                                     operational expense (OPEX).
    2. **Benefit from economies of scale** - You can achieve a lower cost with cloud resources than you could do on your own. 
                                             Because AWS is managing resources for thousands of users you benefit from 
                                             economies of scale.
@@ -61,6 +63,14 @@ Additional advantages of cloud architectures include:
                             connectivity. Each region will have multiple availability zones.
   * **AWS Edge Locations** - Data center locations used as a part of a global content delivery network (CDN). These locations 
                              only apply to global services such as CloudFront (CDN) and Route 53 (DNS). 
+
+## Shared Responsibility Model
+
+The **customer** is responsible for security of services running in the cloud. This includes OS level security patches
+on EC2, software configuration / patching for custom or third-party software. 
+
+**AWS* is responsible for security of the cloud. This includes the AWS network and server infrastructure, and underlying
+operating systems for managed services that do not provide OS level access.
 
 ## Cloud Economics
 
@@ -201,6 +211,24 @@ Table: Comparison of AWS Support Plans
   * **AWS CodeBuild** - CI tool that compiles code, runs test, and produces deployable software packages. 
   * **AWS CodePipeline** - Continuous delivery tool for building build/deployment pipelines. 
 
+# Architecture Principles
+
+## Well-Architected Framework
+
+The AWS Well-Architected Framework is designed to help you understand pros and cons to decisions about building 
+systems in the cloud.
+
+Six Pillars
+
+  * **Operational Excellence** - This pillar focuses on running and monitoring systems, and continually improving
+                               processes/procedures.
+  * **Security** - Focus on protecting information and systems. 
+  * **Reliability** - Focus on workloads performing their intended functions, and the ability to recover quickly from failures.
+  * **Performance Efficiency** - Streamlined allocation of resources. Selecting resource types and sizes optimized for
+                               workload requirements. 
+  * **Cost Optimization** - Focuses on avoiding unnecessary costs.
+  * **Sustainability**  - Focuses on minimizing the environmental impact of running services.
+
 # Compute Services
 
 ## Elastic Compute Cloud (EC2)
@@ -284,6 +312,7 @@ RDS has support for multiple database server engines:
   * Aurora
 
 Key features of RDS include:
+
   * Read replication for improved performance.
   * Multi-AZ deployments for availability.
   * Runs on EC2 instances, but you do not have access to the instances. AWS is fully responsible for the security and 
