@@ -69,8 +69,10 @@ Additional advantages of cloud architectures include:
 The **customer** is responsible for security of services running in the cloud. This includes OS level security patches
 on EC2, software configuration / patching for custom or third-party software. 
 
-**AWS* is responsible for security of the cloud. This includes the AWS network and server infrastructure, and underlying
+**AWS** is responsible for security of the cloud. This includes the AWS network and server infrastructure, and underlying
 operating systems for managed services that do not provide OS level access.
+
+# Cost & Support Options
 
 ## Cloud Economics
 
@@ -126,6 +128,14 @@ Table: Comparison of AWS Support Plans
                             (Java, .NET, Node, Docker, etc).
   * **AWS Lambda** - Platform for running serverless applications (cloud functions). You pay based on function execution
                      time and memory.
+  * **Elastic Container Service (ECS)** - Run docker containers on AWS. Customer must provision and maintain the required
+                                          EC2 instances.
+  * **Fargate** - Run docker containers on AWS without needing to manage infrastructure. Serverless approach to containers.
+  * **Elastic Container Registry (ECR)** - Private docker registry on AWS for storing images for ECS/Fargate.
+  * **AWS Batch** - Run batch processing jobs at any scale. Automatically launches EC2 instances with the required compute
+                    and memory resources. Docker images running on ECS. 
+  * **Amazon Lightsail** - Low cost and predictable pricing. Simpler alternative to other services for basic use-cases.
+                           Virtual servers, storage, databases, and networking. 
 
 ## Content and Network Delivery Services
   * **Amazon Virtual Private Cloud (VPC)** - A VPC is a "container" in which you run all of your services. It is a logically
@@ -158,14 +168,21 @@ Table: Comparison of AWS Support Plans
 ## Database Services
   * **Amazon Relational Database Service (RDS)** - Fully managed relational database service supporting common database
                                                    engines such as MySQL, PostgreSQL, Oracle, etc.
-  * **Amazon Aurora** - MySQL/PostgreSQL compatible database built for the cloud.
+  * **Amazon Aurora** - Amazon Aurora is an AWS specific database engine providing compatability with MySQL and PostgreSQL. 
+                        This is a cloud native database solution that supports automatic scaling of storage in increments 
+                        of 10GB. Can store up to 64TB.
   * **Amazon Database Migration Service (DMS)** - Tooling for one time or continual data migration into Amazon RDS from
                                                   many different commercial database systems.
   * **Amazon Dynamo DB** - Fully managed no SQL DB. Support key-value storage or document storage. Has extremely low latency
-                           and automatic scaling. Can handle up to 20 millions requests per second.
+                           and automatic scaling. Can handle up to 20 millions requests per second. Can store 100s of terabytes.
   * **Amazon ElastiCache** - Fully managed in memory datastore with on demand scaling and replication. Used for caching
                              and session storage. Compatible with redis and memcached. 
   * **Amazon Red Shift** - Data warehouse service supporting high performance and petabyte scale. Uses column oriented storage.
+  * **Amazon Neptune** - Fully managed graph oriented database.
+  * **Amazon QLDB** - Quantum Ledger Database is a managed service that provides transparent, immutable, and 
+                      cryptographically verifiable transaction log (journal).
+  * **Amazon Managed Blockchain** - Fully managed service for building blockchain application using the open-source
+                                    frameworks Hyperledger Fabric and Ethereum.
 
 ## Integration Services
   * **Simple Notification Service (SNS)** - Publish / subscribe messaging service supporting topics. Supports notifications
@@ -193,6 +210,22 @@ Table: Comparison of AWS Support Plans
   * **Amazon Cognito** - Manage authentication / authorization for your custom applications and provides a fully managed user 
                          directory service. Enabled controlled access to AWS resources (e.g. S3 bucket) and works with enterprise
                          IdPs (e.g. AD, SAML).
+
+## Security Services
+
+  * **AWS Key Management Service (KMS)** - Service for managing encryption keys used within AWS. 
+  * **AWS Certificate Manager (ACM)** - Easily provision, manage, deploy, and renew SSL/TLS certificates. 
+  * **AWS Web Application Firewall (WAF)** - Protects web applications from common exploits at the HTTP level (layer 7).
+                                           Extra cost option to deploy on an application load balancer, API Gateway or
+                                           on cloud front. 
+  * **AWS Shield** - Free service that is automatically activated for all customer. Protection from some layer 3/4 attacks
+                   such as SYN/UDP floods and reflection attacks. 
+  * **AWS Config** - Audit current configuration and changes within the AWS environment.
+  * **Amazon Macie** - Data security and privacy service that uses machine learning and pattern matching to protect
+                       your sensitive data in the cloud (e.g. detection of PII data).
+  * **Amazon Guard Duty** - Intelligent threat discovery using machine learning. Monitors DNS logs, CloudTrail Events, 
+                            VPC logs, and Kubernetes logs and can generate CloudWatch events to notify of findings.
+  * **Amazon Inspector** - Automated security assessments for EC2 instances and containers pushed to Amazon ECR.
 
 ## Data Processing Services
   * **AWS Glue** - Serverless extract, transform, and load (ETL) service for RDS, DynamoDB, RedShift, S3. 
@@ -298,7 +331,58 @@ There are four types of load balancers:
   * **Classic Load Balancer** - Older style of load balancer that supports TCP/SSL connections and EC2-classic. Supports 
                                 sticky sessions using application-generated cookies.
 
-# Database Services
+# Storage & Database Services
+
+## Amazon Simple Storage Service (S3)
+
+Amazon S3 is an object storage service that provides access over HTTPs. S3 stores objects (files) in buckets (like a
+directory).
+
+### Features
+
+  * High availability of objects across multiple availability zones.
+  * Options for replication either within the same region or across regions. 
+  * Option to enable versioning of files per bucket. 
+  * Static website hosting.
+  * Control access through IAM policies.
+
+### Buckets
+
+  * Must have a globally unique name (across regions and accounts) consisting of 3-36 lower case characters. Name must
+    start with a letter or number and cannot contain underscores or be an IP address. 
+  * Buckets are defined in a specific region even though it looks like a global service.
+  * S3 buckets have no concept of directories. 
+
+### Objects
+
+  * Objects are identified by a key. Key is composed of a prefix and the object name. 
+  * Objects can be up to 5TB. 
+
+### Storage Classes
+
+S2 storage is available with different storage options. These have varying cost, reliability, and access times. Option 
+to enable intelligent-tiering to automatically move objects between tiers (for a fee).
+
+  * **Standard General Purpose** - Used for frequently accessed data.
+  * **Standard Infrequent Access (IA)** - Less frequent access, but still needed quickly.
+  * **One Zone Infrequent Access** - Only stored in one availability zone. Lower reliability, use for data that can be 
+                                     recreated easily.
+  * **Glacier** - Lower cost. Intended for archival or backup purposes.
+    * *Glacier Instant Retrieval* - Must store for a minimum of 90 days. Millisecond retrieval. 
+    * *Glacier Flexible Retrieval* - Must store for a minimum of 90 days. Multiple retrieval options: Expedited 1 - 5 minutes,
+                                     Standard 3 - 5 hours, Bulk 5 - 12 hours.
+    * *Glacier Deep Archive* - Must store for a minimum of 180 days. Standard retrieval in 12hrs or bulk retrieval in 48hrs.
+
+### Data Migration
+
+AWS provides multiple options for migrating data into AWS S3 to be used in other services.
+
+|    Service | Transfer Capacity | Notes                                                            |
+|-----------:|:-----------------:|------------------------------------------------------------------|
+|   Snowcone |     8 - 14TB      | Compact device. Can return to AWS for upload or upload yourself. |
+|   Snowball |       80TB        | Available in storage or compute optimized versions.              |
+| Snowmobile |       100PB       | Shipping container size, for massive data transfer.              |
+
 
 ## Amazon Relational Database Service (RDS)
 
@@ -314,10 +398,11 @@ RDS has support for multiple database server engines:
 Key features of RDS include:
 
   * Read replication for improved performance.
-  * Multi-AZ deployments for availability.
+  * Multi-AZ and Multi-Region deployment options for availability.
   * Runs on EC2 instances, but you do not have access to the instances. AWS is fully responsible for the security and 
     management of the database server instance.
   * Support for automatic backups. Automatic backups are performed daily and transaction logs are retained throughout 
     the day. This allows for restoration to a very specific time if needed. **These backups are deleted when the RDS 
     instance is deleted.**
   * Support for DB snapshots performed manually by the administrator. These are retained even if the RDS instance is deleted. 
+
