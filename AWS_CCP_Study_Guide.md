@@ -249,7 +249,8 @@ Table: Comparison of AWS Support Plans
 ## Well-Architected Framework
 
 The AWS Well-Architected Framework is designed to help you understand pros and cons to decisions about building 
-systems in the cloud.
+systems in the cloud. The AWS Well-Architected Tool can be used to help review architecture against best practices.
+https://console.aws.amazon.com/wellarchitected
 
 Six Pillars
 
@@ -261,6 +262,15 @@ Six Pillars
                                workload requirements. 
   * **Cost Optimization** - Focuses on avoiding unnecessary costs.
   * **Sustainability**  - Focuses on minimizing the environmental impact of running services.
+
+
+## Design Principles
+
+ * Horizontal & Vertical Scaling
+ * Automation
+ * Loose Coupling
+ * Use managed services over creation of servers
+ * Resources should be easy to create / remove
 
 # Compute Services
 
