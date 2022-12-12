@@ -1,5 +1,6 @@
 ---
-title: "AWS Cloud Practitioner Study Guide"
+title: AWS Cloud Practitioner Study Guide
+subtitle: Exam CLF-001
 date: December 2022
 documentclass: report
 geometry: "margin=.75in"
@@ -15,7 +16,7 @@ output: pdf_document
 
 Six Advantages of Cloud Computing
 
-   1. **Trade fixed expense for variable expense** - Pay as you go pricing in the cloud allows you to pay only for the 
+   1. **Trade fixed expense for variable expense** - Pay-as-you go pricing in the cloud allows you to pay only for the 
                                                      resources you use and eliminates the need for large up-front 
                                                      infrastructure investments. Trade capital expense (CAPEX) for
                                                      operational expense (OPEX).
@@ -93,6 +94,13 @@ To help manage and predict costs of operating in the cloud AWS provides several 
                         clean separation of costs between organizations. Also, provides for centralized logging and security standards.
   * **Resource Tags** -  Metadata that can be attached to specific resources. These are stored as key/value pairs and can 
                          be used to identify department, environment, project, etc.
+
+## Consulting Services
+
+  * **AWS Professional Services** - A global team of experts that can help you with your business objectives in the cloud
+                                    by working with your team and your chosen member of the AWS Partner Network.
+  * **AWS Partner Network (APN)** - A global community of partners that provide consulting services to help customers
+                                    migrate to and leverage AWS cloud capabilities.
 
 \pagebreak
 
@@ -252,25 +260,84 @@ The AWS Well-Architected Framework is designed to help you understand pros and c
 systems in the cloud. The AWS Well-Architected Tool can be used to help review architecture against best practices.
 https://console.aws.amazon.com/wellarchitected
 
-Six Pillars
+### General Design Principles
 
-  * **Operational Excellence** - This pillar focuses on running and monitoring systems, and continually improving
-                               processes/procedures.
-  * **Security** - Focus on protecting information and systems. 
+  * **Stop guessing capacity needs** - Cloud computing allows you to scale up or down capacity easily. 
+  * **Test systems at production scale** - Spin up a production sized test environment as-needed to simulate the live 
+                                           environment. Tear down the environment when not in use to save money since
+                                           AWS is pay for what you use. 
+  * **Automate to make architectural experimentation easier** - Automation allows you to create and replicate workloads
+                                                                without manual effort. Track changes and audit the impact.
+  * **Allow for evolutionary architectures** - In a traditional environment architectures are usually implemented as 
+                                               static because change can be hard and expensive. The ability to automate
+                                               and test in the cloud reduces the risk of design changes. 
+  * **Drive architectures using data** - Collect data on how your architecture choices are impacting your workloads. 
+                                         You can then use decisions based on facts to improve how your workload performs.
+  * **Improve through game days** - Test your architecture by scheduling "game days" to simulate events in production.
+
+### Six Pillars
+
+  * **Operational Excellence** - This pillar focuses on running and monitoring systems, and continually improving processes/procedures.
+    * *Perform operations as code* - Apply the same engineering discipline that you use for application code your entire environment.
+    * *Make frequent, small, reversible changes* - Design application components to be updated regularly. Make changes in 
+                                                   small increments that can be reversed if they fail.
+    * *Refine operations procedures frequently* - Continually look for opportunities to improve operational procedures. 
+    * *Anticipate failure* - Perform "pre-mortem" exercises to identify potential sources of failure. Test scenarios
+                             to understand the impacts of those failures and see that your response procedures are adequate.
+    * *Learn from all operational failures* - Apply lessons learned from all operational events and failures.
+    
+  * **Security** - Focus on protecting information and systems.
+    * *Implement a strong identity foundation* - Implement the principle of least privilege and enforce separation of 
+                                                 duties. Centralize identity management. 
+    * *Enable traceability* - Monitor, alert, and audit actions in the environment in real time.
+    * *Apply security at all layers* - Apply a defense in depth approach with multiple security controls at all levels.
+    * *Automate security best practices* - Automate software-based security mechanisms and controls that are defined and managed as code.
+    * *Protect data in transit and at rest* - Categorize data into sensitivity levels and apply encryption and other 
+                                              security controls appropriately.
+    * *Keep people away from data* - Use tools and procedures to reduce or eliminate the need for manual processing of data.
+    * *Prepare for security events* - Be prepared for an incident by having policies and plans for incident management and investigation.
+    
   * **Reliability** - Focus on workloads performing their intended functions, and the ability to recover quickly from failures.
+    * *Automatically recover from failure* - Monitor workloads and key performance indicators to automatically trigger 
+                                             automation when a threshold is breached. This allows for automatic notification 
+                                             and either repair or workarounds for the issue.  
+    * *Test recovery procedures* - Perform testing to verify how the workload fails and validate recovery procedures.
+    * *Scale horizontally to increase aggregate workload availability* - Replace a single large resource with multiple
+                                                                         smaller resources to limit the impacts of a single failure.
+    * *Stop guessing capacity* - Monitor workloads and automate the addition or removal of resources to maintain optimal level.
+    * *Manage change in automation* - Changes to infrastructure should be changed using automation which can be tracked and reviewed.
+
   * **Performance Efficiency** - Streamlined allocation of resources. Selecting resource types and sizes optimized for
-                               workload requirements. 
+                                 workload requirements. 
+    * *Democratize advanced technologies* - Make it easier for your team to implement new technologies easier by delegating 
+                                            complex tasks to the cloud vendor. Many technologies become managed services that 
+                                            your team can consume without resource provisioning or management.
+    * *Go global in minutes* - Quickly deploy your workload in multiple regions around the world for lower latency and better customer experience.
+    * *Use serverless architectures* - Serverless architectures remove th need to run and maintain your own servers. 
+    * *Experiment more often* - With virtual and automatable resources it is easier to test using different resource configurations. 
+    * *Consider mechanical sympathy* - Understand how cloud services are consumed and make sure the approach aligns with your workload goals. 
+
   * **Cost Optimization** - Focuses on avoiding unnecessary costs.
+    * *Implement cloud financial management* - Dedicate time and resources to build capabilities for cost optimization.
+    * *Adopt a consumption model* - Pay only for the computing resources you require. Development and test environments
+                                    used only during certain hours / days can be stopped when not in use for cost savings.
+    * *Measure overall efficiency* - Measure the business output of your software and the costs associated with delivering it.
+    * *Stop spending money on undifferentiated heavy lifting* - AWS does the heavy lifting of data center operations and 
+                                                                other infrastructure to allow you to focus on customers 
+                                                                and business needs.
+    * *Analyze and attribute expenditure* - The cloud makes it easier to accurately identity usage and costs of systems.
+
   * **Sustainability**  - Focuses on minimizing the environmental impact of running services.
-
-
-## Design Principles
-
- * Horizontal & Vertical Scaling
- * Automation
- * Loose Coupling
- * Use managed services over creation of servers
- * Resources should be easy to create / remove
+    * *Understand your impact* - Measure the impact of your workload and model the future impacts.
+    * *Establish sustainability goals* - Establish long-term sustainability goals such as reducing to compute and 
+                                         storage requirements per transactions.
+    * *Maximize utilization* - Right-size workloads and implement efficient design to ensure high utilization / maximize 
+                               energy efficiency of underlying hardware.
+    * *Anticipate and adopt new more efficient hardware and software offerings* - Design for flexibility to allow for rapid 
+                                                                                  adoption of new more efficient technologies.
+    * *Use managed services* - Sharing services across a broad customer base helps maximize resource utilization and reduces
+                               the amount of physical infrastructure needed to support cloud workloads.
+    * *Reduce the downstream impact of your cloud workloads* - Reduce the amount of resources required to use your services.
 
 # Compute Services
 
