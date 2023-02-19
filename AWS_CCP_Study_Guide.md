@@ -163,6 +163,8 @@ Table: Comparison of AWS Support Plans
   * **AWS Global Accelerator** - Routes via AWS global edge locations. Once a request reaches an edge location it is 
                                  routed within AWS network instead of internet. Improves performance and has superior
                                  fault tolerance. 
+  * **AWS Local Zones** - Allows you to run AWS services for your application close to large population centers to reduce
+                          latency to your end users. 
 
 ## File Storage Services
   * **Amazon Simple Storage Service (S3)** - Fully managed file storage service that stores files as objects in buckets.
