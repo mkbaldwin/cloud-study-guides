@@ -150,6 +150,8 @@ Table: Comparison of AWS Support Plans
                                              separated part of AWS for your use and provides virtual networking configurable 
                                              for your application. 
   * **AWS Direct Connect** - Allows for establishing a connection from AWS directly to your data center.
+  * **AWS PrivateLink** - Allows for establishing secure connections between two VPCs and AWS services without exposing 
+                          the services to the internet. 
   * **Amazon Route 53** - Global service (no regions) for providing DNS.
   * **Elastic Load Balancing** - Cloud based load balancers to distribute traffic across multiple EC2, ECS, or Lambda
                                  targets. Multiple types of load balancers available: application (ALB), network (NLB),
