@@ -80,7 +80,8 @@ operating systems for managed services that do not provide OS level access.
 Traditional data centers have a very large capital (up-front) expense to get started, plus operational costs for the 
 lifetime of the data center. Additional costs are incurred anytime increased capacity is needed. Cloud on the other 
 hand does not have any up-front expenses. Operational expenses will scale based on your demand/usage (i.e. pay as 
-you go). Traditional data centers also have the potential for unused capacity or unmet demand.
+you go). Traditional data centers also have the potential for unused capacity or unmet demand, but with cloud computing
+you can scale compute resources to fit your need.
 
 To help manage and predict costs of operating in the cloud AWS provides several tools:
 
