@@ -1,7 +1,7 @@
 ---
 title: AWS Cloud Practitioner Study Guide
 subtitle: Exam CLF-001
-date: December 2022
+date: April 2023
 documentclass: report
 geometry: "margin=.75in"
 linestretch: 1.25
