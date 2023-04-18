@@ -263,7 +263,7 @@ Table: Comparison of AWS Support Plans
   * *Amazon Lex* - Fully managed artificial intelligence (AI) service for building natural language models and 
                    conversational interfaces.
  
-## AI & Machine Learning
+## Miscellaneous Services
 
   * *Amazon Polly* - Perform text-to-speech translation in multiple languages.
 
