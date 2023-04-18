@@ -257,6 +257,16 @@ Table: Comparison of AWS Support Plans
   * **AWS CodeBuild** - CI tool that compiles code, runs test, and produces deployable software packages. 
   * **AWS CodePipeline** - Continuous delivery tool for building build/deployment pipelines. 
 
+## AI & Machine Learning
+
+  * *Amazon SageMaker* - Fully managed infrastructure, tools, and workflows for building machine learning models.
+  * *Amazon Lex* - Fully managed artificial intelligence (AI) service for building natural language models and 
+                   conversational interfaces.
+ 
+## AI & Machine Learning
+
+  * *Amazon Polly* - Perform text-to-speech translation in multiple languages.
+
 # Architecture Principles
 
 ## Well-Architected Framework
