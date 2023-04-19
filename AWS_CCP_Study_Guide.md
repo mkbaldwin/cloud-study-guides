@@ -1,7 +1,7 @@
 ---
 title: AWS Cloud Practitioner Study Guide
 subtitle: Exam CLF-001
-date: April 2023
+date: "Revised: April 2023"
 documentclass: report
 geometry: "margin=.75in"
 linestretch: 1.25
@@ -63,7 +63,8 @@ Additional advantages of cloud architectures include:
   * **Availability Zone** - One or more data centers within a specific AWS Region with redundant power, networking, and 
                             connectivity. Each region will have multiple availability zones.
   * **AWS Edge Locations** - Data center locations used as a part of a global content delivery network (CDN). These locations 
-                             only apply to global services such as CloudFront (CDN) and Route 53 (DNS). 
+                             only apply to global services such as CloudFront (CDN) and Route 53 (DNS),  Web Application Firewall, and AWS Shield.
+                             There are over 200 edge locations in 47 different countries.
 
 ## Shared Responsibility Model
 
@@ -147,18 +148,20 @@ Table: Comparison of AWS Support Plans
                            Virtual servers, storage, databases, and networking. 
 
 ## Content and Network Delivery Services
-  * **Amazon Virtual Private Cloud (VPC)** - A VPC is a "container" in which you run all of your services. It is a logically
-                                             separated part of AWS for your use and provides virtual networking configurable 
-                                             for your application. 
+  * **Amazon Virtual Private Cloud (VPC)** - A VPC is a service that defines a virtual environment for your application(s)
+                                             that is an isolated section of AWS' cloud environment. A VPC is a "container" 
+                                             in which you run all of your services. It is a logically separated part of 
+                                             AWS for your use and provides virtual networking configurable for your application. 
   * **AWS Direct Connect** - Allows for establishing a connection from AWS directly to your data center.
   * **AWS PrivateLink** - Allows for establishing secure connections between two VPCs and AWS services without exposing 
                           the services to the internet. 
-  * **Amazon Route 53** - Global service (no regions) for providing DNS.
+  * **Amazon Route 53** - Global service (no regions) for providing DNS. Utilizes AWS Edge Locations.
   * **Elastic Load Balancing** - Cloud based load balancers to distribute traffic across multiple EC2, ECS, or Lambda
                                  targets. Multiple types of load balancers available: application (ALB), network (NLB),
                                  or classic.
-  * **Cloud Front** - Global content delivery network (CDN) utilizing AWS edge locations. Can be used for both static
-                      and dynamic content. Includes security features such as DDoS protection and web application firewall (WAF). 
+  * **CloudFront** - Global content delivery network (CDN) utilizing AWS edge locations. Can be used for both static
+                      and dynamic content. Includes security features such as DDoS protection and web application 
+                      firewall (WAF). Utilizes AWS Edge Locations.
   * **Amazon API Gateway** - Fully managed API service. Integrates with multiple AWS services and provides monitoring 
                              and metrics on API calls.
   * **AWS Global Accelerator** - Routes via AWS global edge locations. Once a request reaches an edge location it is 
@@ -224,15 +227,25 @@ Table: Comparison of AWS Support Plans
                          directory service. Enabled controlled access to AWS resources (e.g. S3 bucket) and works with enterprise
                          IdPs (e.g. AD, SAML).
 
-## Security Services
+### AWS Identity and Access Management (IAM)
 
+  * **Users** - Represent the individuals using your AWS account. Account should be created for each user rather than 
+                using the root account.
+  * **Groups** - A collection of users that allow for assigning permissions to multiple users at once. 
+  * **Permissions** -
+  * **Policies** - Policies define permissions for an action regardless of the method you use to perform the operation.
+  * **Roles** - An IAM role is an entity that you can create within an AWS account and associate specific permissions.
+                Roles are similar to an IAM user, but it is not associated with a specific person. Instead it can be
+                accessible to anyone that needs it.
+
+## Security Services
   * **AWS Key Management Service (KMS)** - Service for managing encryption keys used within AWS. 
   * **AWS Certificate Manager (ACM)** - Easily provision, manage, deploy, and renew SSL/TLS certificates. 
   * **AWS Web Application Firewall (WAF)** - Protects web applications from common exploits at the HTTP level (layer 7).
                                            Extra cost option to deploy on an application load balancer, API Gateway or
-                                           on cloud front. 
+                                           on cloud front. Utilizes AWS Edge Locations.
   * **AWS Shield** - Free service that is automatically activated for all customer. Protection from some layer 3/4 attacks
-                   such as SYN/UDP floods and reflection attacks. 
+                     such as SYN/UDP floods and reflection attacks. Utilizes AWS Edge Locations. 
   * **AWS Config** - Audit current configuration and changes within the AWS environment.
   * **Amazon Macie** - Data security and privacy service that uses machine learning and pattern matching to protect
                        your sensitive data in the cloud (e.g. detection of PII data).
@@ -240,11 +253,31 @@ Table: Comparison of AWS Support Plans
                             VPC logs, and Kubernetes logs and can generate CloudWatch events to notify of findings.
   * **Amazon Inspector** - Automated security assessments for EC2 instances and containers pushed to Amazon ECR.
 
+### Controlling network traffic within a VPC.
+
+AWS provides two services for controlling traffic between services within a VPC and between the VPC and the outside world: 
+Security Groups and Network ACLs. Instances can be secured using only security groups, but network ACLs can also be added
+as an additional layer of protection.
+
+  * **Security Group** -  Allow for defining of inbound and outbound traffic at the resource level (e.g. for an EC2 instance).
+                          Resource instances can belong to one or more security groups. If a security group is not specified
+                          then the default security group for the VPC is used.
+  * **Network ACL** - Define rules at the subnet level for inbound and outbound traffic. This is much like a more traditional firewall.
+
+| Security Group                                                        | Network ACL                                                         |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------|
+| Operates at the instance level.                                       | Operates at the subnet level.                                       |
+| Only applies to instances it is specifically associated with.         | Applies to all instances in the associated subnet.                  |
+| Only supports defining ALLOW rules.                                   | Supports defining rules as either ALLOW or DENY.                    |
+| Evaluates all rules before deciding if traffic is allowed.            | Evaluates rules  in order starting with the lowest numbered rule.   |
+| Stateful: Return traffic is always allowed regardless of other rules. | Stateless: Return traffic must be explicitly allowed by the rules.  |
+
+
 ## Data Processing Services
   * **AWS Glue** - Serverless extract, transform, and load (ETL) service for RDS, DynamoDB, RedShift, S3. 
   * **Amazon EMR** - Elastic map reduce service for big data processing (includes Spark, Flink, Hive, HBase, Hudi, and Presto support).
   * **AWS Data Pipeline** - Managed extract, transform, and load (ETL) service with data workflows.
-  * **Amazon Athena** - Managed service for querying large scale data in S2 using standard SQL style queries.
+  * **Amazon Athena** - Managed service for querying large scale data in S3 using standard SQL style queries.
   * **Amazon Quick Sight** - Managed business intelligence service and dynamic dashboards.
   * **Amazon Cloud Search** - Managed service that enables developers to build search capabilities into custom applications.
   * **Amazon Rekognition** - Computer vision image/video recognition used to identify object, actions, or perform facial recognition. 
@@ -259,13 +292,13 @@ Table: Comparison of AWS Support Plans
 
 ## AI & Machine Learning
 
-  * *Amazon SageMaker* - Fully managed infrastructure, tools, and workflows for building machine learning models.
-  * *Amazon Lex* - Fully managed artificial intelligence (AI) service for building natural language models and 
+  * **Amazon SageMaker** - Fully managed infrastructure, tools, and workflows for building machine learning models.
+  * **Amazon Lex** - Fully managed artificial intelligence (AI) service for building natural language models and 
                    conversational interfaces.
  
 ## Miscellaneous Services
 
-  * *Amazon Polly* - Perform text-to-speech translation in multiple languages.
+  * **Amazon Polly** - Perform text-to-speech translation in multiple languages.
 
 # Architecture Principles
 
@@ -417,7 +450,7 @@ There are four types of load balancers:
 
   * **Application Load Balancer (ALB)** - An application load balancer works at the application layer (OSI layer 7) and can 
                                   load balance/proxy HTTP/HTTPS traffic. Allows for specifying advanced routing rules.
-  * **Network Load Balancer (NLB) ** - A network load balancer works at the transport layer (OSI layer 4) and is capable of load 
+  * **Network Load Balancer (NLB)** - A network load balancer works at the transport layer (OSI layer 4) and is capable of load 
                                 balancing most TCP/UDP protocols.
   * **Gateway Load Balancer** - Provides cloud native load balancing for virtual appliances.
   * **Classic Load Balancer** - Older style of load balancer that supports TCP/SSL connections and EC2-classic. Supports 
@@ -452,7 +485,7 @@ directory).
 
 ### Storage Classes
 
-S2 storage is available with different storage options. These have varying cost, reliability, and access times. Option 
+S3 storage is available with different storage options. These have varying cost, reliability, and access times. Option 
 to enable intelligent-tiering to automatically move objects between tiers (for a fee).
 
   * **Standard General Purpose** - Used for frequently accessed data.
