@@ -8,6 +8,6 @@ The `makepdf.sh` script will use pandoc/latex to generate a PDF version of the d
 
 **Use this document at your own risk as it may be incomplete or have errors.**
 
-Study Guides:
+Study Guides (PDF):
 
-  * [AWS Certified Cloud Practitioner (CLF-001)](Cloud_Practitioner)
+  * [AWS Certified Cloud Practitioner (CLF-001)](Cloud_Practitioner.pdf)
